@@ -1,5 +1,5 @@
-Tidy Full-Factorial Numerical Simulations in Matlab
-===================================================
+Tidy, Scientific Full-Factorial Numerical Simulations in Matlab
+===============================================================
 
 [![DOI](https://zenodo.org/badge/105531812.svg)](https://zenodo.org/badge/latestdoi/105531812)
 
