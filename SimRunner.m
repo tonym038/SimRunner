@@ -42,6 +42,11 @@ function simrunner(MAINFXN, RUNF, EXPNAME)
 %          full-factorial experiment, the 12 unique combinations will be run 
 %          (3x4), resulting in an output structure with 12 entries.
 %
+%          Note: if the constant structure is more than 1 depth, estimates of 
+%          goodness of fit for time remaining in experiment will not be 
+%          possible since full predictor values will not be transparent to the 
+%          ensemble tree fitting algorithm.
+%
 % See also SIMRUNNER MAKE_EXPS_TABLE SMARTTIME PREDICT_TIME
 
 % Author: SA, 2 Oct 2017 (Monash)
@@ -71,7 +76,7 @@ for ex = 1:n_ex
             eta_rec(ex) = eta_num;
 			eta = datestr(eta_num);
 			smart_eta = smarttime(eta);
-            fprintf('  >> Estimated final finish time (fit):\n          ...  %s (%4.2f)\n ',smart_eta,fit);
+            fprintf('  >> Estimated final finish time (fit):\n          ...  %s (%s)\n ',smart_eta,fit);
         else
             fprintf('  >> Estimated final finish time: <more data needed>\n');
 		end

@@ -42,7 +42,7 @@ eval([Rnf']);
 
 % .. check inputs exists
 if exist('constant', 'var') == 0
-    error('Cannot find file specified runfile.');
+    error('Found runfile, but doesn''t seem to contain structured array variable ''constant''.');
 end
 
 % .. assume only constants, unless variables found

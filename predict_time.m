@@ -22,16 +22,22 @@ if license('checkout', 'statistics_toolbox')
 	% .. train
 	Y = runT;
 	XTbl = T(1:n,:);
-	Mdl = fitrensemble(XTbl, Y, 'NumLearningCycles', 20);
+    try
+        Mdl = fitrensemble(XTbl, Y, 'NumLearningCycles', 20);
+        fit = sprintf('%.2f', 1-resubLoss(Mdl));
 	
-	% .. predict
-	XTbl_left = T(n+1:end,:);
-	pred_runT = predict(Mdl, XTbl_left);
+        % .. predict
+        XTbl_left = T(n+1:end,:);
+        pred_runT = predict(Mdl, XTbl_left);
+    catch
+        pred_runT = repmat(mean(runT), height(T)-n, 1);
+        fit = 'fit NA, check docs';
+    end
 else
     pred_runT = repmat(mean(runT), height(T)-n, 1);
+    fit = 'fit NA, check docs';
 end
 
 % .. output
 togo = sum(pred_runT);
 eta = datenum(now) + togo;
-fit = 1-resubLoss(Mdl);
