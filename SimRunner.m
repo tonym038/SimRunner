@@ -1,7 +1,7 @@
-function simrunner(MAINFXN, RUNF, EXPNAME)
+function SimRunner(MAINFXN, RUNF, EXPNAME)
 
-% SIMRUNNER Run full-factorial numerical experiments, in series.
-%    SIMRUNNER(MAINFXN, RUNF, EXPNAME) Runs MAINFXN over the constants and 
+% SimRunner Run full-factorial numerical experiments, in series.
+%    SimRunner(MAINFXN, RUNF, EXPNAME) Runs MAINFXN over the constants and 
 %    full-factorial combinations of variables found in RUNF, saving the 
 %    results as a structured array SUMMARY to the output file EXPNAME.mat.
 %
@@ -14,17 +14,17 @@ function simrunner(MAINFXN, RUNF, EXPNAME)
 %    already completed.
 %
 %       Example: run the test program and runfile
-%          simrunner('test_main', 'test_runfile.txt', 'test_out')
+%          SimRunner('test_main', 'test_runfile.txt', 'test_out')
 %
-%    For a parallel version of SIMRUNNER, see SIMRUNNER_PAR.
+%    For a parallel version of SimRunner, see SimRunner_par.
 %
 %    Setup:
 %       main program
 %          The main program file (MAINFXN) should take a single structured 
 %          array as input. This input array will be created at run-time by 
-%          SIMRUNNER, as a combination of constants and a unique parameter set 
+%          SimRunner, as a combination of constants and a unique parameter set 
 %          from the variables given. Params can be easily unpacked from the 
-%          input array within the main file. Note: SIMRUNNER can handle both 
+%          input array within the main file. Note: SimRunner can handle both 
 %          vectors and cell-array of strings as variable definitions.
 %
 %       runfile
@@ -47,9 +47,10 @@ function simrunner(MAINFXN, RUNF, EXPNAME)
 %          possible since full predictor values will not be transparent to the 
 %          ensemble tree fitting algorithm.
 %
-% See also SIMRUNNER MAKE_EXPS_TABLE SMARTTIME PREDICT_TIME
+% See also SimRunner_par MAKE_EXPS_TABLE SMARTTIME PREDICT_TIME
 
 % Author: SA, 2 Oct 2017 (Monash)
+% Modified: TM (Curtin)
 
 more off
 

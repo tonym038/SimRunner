@@ -1,7 +1,7 @@
-function simrunner_par(RUNF, EXPNAME)
+function SimRunner_par(RUNF, EXPNAME)
 
-% SIMRUNNER_PAR Run experiments in parallel.
-%    SIMRUNNER_PAR(RUNF, EXPNAME) requires that the (strictly named) main file 
+% SimRunner_par Run experiments in parallel.
+%    SimRunner_par(RUNF, EXPNAME) requires that the (strictly named) main file 
 %    'main_par.m' is on the path and, like 'test_main.m', accepts a structure 
 %    of inputs 'inputs'.  RUNF is the runfile containing the structured array 
 %    CONSTANT and vectors of experimental conditions contained in structured 
@@ -12,7 +12,7 @@ function simrunner_par(RUNF, EXPNAME)
 %    finished.
 %
 %       Example: run the test runfile in parallel
-%          SimRunner_par('test_runfile.txt', 'par_out')
+%          SimRunner_par('test_runfile.txt', 'test_out_par')
 %
 %    For more information on setup see the helpfile for SIMRUNNER.
 %
@@ -20,9 +20,10 @@ function simrunner_par(RUNF, EXPNAME)
 %       - no information on progress is provided in this version.
 %       - requires Distributed Computing Toolbox.
 %
-% See also SIMRUNNER MAKE_EXPS_TABLE SMARTTIME PREDICT_TIME
+% See also SimRunner MAKE_EXPS_TABLE SMARTTIME PREDICT_TIME
 
 % Author: SA, 2 Oct 2017 (Monash)
+% Modified: TM (Curtin)
 
 % TODO
 %  SA: Progress meter. This is not trivial in parallel.
