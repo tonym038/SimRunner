@@ -1,4 +1,4 @@
-function T = make_exps_table(RUNF)
+function [T, grouping_vars] = make_exps_table(RUNF)
 
 % MAKE_EXPS_TABLE Generate full factorial variable table.
 %    T = MAKE_EXPS_TABLE(RUNF) creates a table T for full factorial 
@@ -25,6 +25,7 @@ function T = make_exps_table(RUNF)
 %    See also NDGRID
 
 % Author: SA, 2 Oct 2017 (Monash)
+% Modified: TM, 31 Mar 2025 (Curtin)
 
 % TODO
 %  SA: add support for semi-factorial design
@@ -33,6 +34,7 @@ function T = make_exps_table(RUNF)
 if exist(RUNF,'file') == 0
     error('Specified runfile not found.');
 end
+T = table();
 
 % .. read runfile
 fid = fopen(RUNF,'r');
@@ -47,6 +49,7 @@ end
 
 % .. assume only constants, unless variables found
 n = 1;
+grouping_vars = {};
 if exist('variable', 'var')
     % .. create full factorial experiment index table
     lvars = length(variable);
@@ -65,20 +68,16 @@ if exist('variable', 'var')
 
     % .. now turn into experimental table
     ix = 1:numel(x1);
-    for i = 1:lvars
-        tname = variable(i).name;
+    for i = 1:lvars        
         eval(sprintf('ix_t = x%.0f(ix);', i));
         t1 = variable(i).values;
-        t2 = [t1(ix_t)]';
-        if i == 1
-            T = table(t2);
-        else
-            T = [T table(t2)];
-        end
-        T.Properties.VariableNames{end} = tname;
+        t2 = [t1(:, ix_t)]';        
+        T = [T array2table(t2, 'VariableNames', {variable(i).name})];                
     end
     T = unique(T, 'rows');      % .. hierarchy by var 1 .. k
     n = height(T);
+    
+    grouping_vars = string({variable(~ismember({variable(:).name}, 'rng_seed')).name});    
 end
 
 % .. now add in constants
