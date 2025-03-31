@@ -1,6 +1,10 @@
 Tidy, Scientific Full-Factorial Numerical Simulations in Matlab
 ===============================================================
 
+Modified by Tony Mathew.
+
+===============================================================
+
 [![DOI](https://zenodo.org/badge/105531812.svg)](https://zenodo.org/badge/latestdoi/105531812)
 
 SimRunner enables you to easily run any numerical simulation main file over a 
